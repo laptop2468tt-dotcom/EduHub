@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduHub | المنصة التعليمية الصادقة</title>
+    <!-- خطوط جوجل الاحترافية -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- أيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #10b981;
+            --bg-color: #f1f5f9;
+            --text-color: #0f172a;
+            --card-bg: #ffffff;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            transition: all 0.2s ease-in-out;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* الهيدر */
+        header {
+            background-color: var(--card-bg);
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 8px 12px;
+            border-radius: 12px;
+        }
+
+        .user-actions button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .user-actions button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* الحاوية الرئيسية */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* البانر الترحيبي والإحصائيات */
+        .hero-section {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.2);
+        }
+
+        .hero-section h2 { font-size: 32px; margin-bottom: 10px; }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px 30px;
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+            min-width: 150px;
+        }
+
+        .stat-card h3 { font-size: 28px; font-weight: 700; }
+
+        /* شريط البحث والتبويبات */
+        .controls-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            border: none;
+            background: #e2e8f0;
+            color: #64748b;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* نموذج الرفع المطور */
+        .upload-section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        .upload-section h3 { margin-bottom: 20px; color: var(--secondary-color); }
+
+        .upload-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label { font-weight: 600; font-size: 14px; }
+
+        input, select {
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            background: #f8fafc;
+            outline: none;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary-color);
+            background: #fff;
+        }
+
+        .submit-btn {
+            grid-column: 1 / -1;
+            background: var(--accent-color);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover { background: #059669; }
+
+        /* شبكة عرض المواد الفاخرة */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid #f1f5f9;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-header-img {
+            height: 140px;
+            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+        }
+
+        .card-header-img.video-type {
+            background: linear-gradient(45deg, #ef4444, #b91c1c);
+        }
+
+        .card-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-badge {
+            align-self: flex-start;
+            background: #eff6ff;
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .card-badge.video-badge {
+            background: #fef2f2;
+            color: #ef4444;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .btn-action {
+            width: 100%;
+            text-align: center;
+            background: #f1f5f9;
+            color: var(--text-color);
+            padding: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: block;
+        }
+
+        .btn-action:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* نافذة التسجيل (Modal) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 420px;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px; left: 20px;
+            cursor: pointer;
+            font-size: 22px;
+            color: #94a3b8;
+        }
+
+        .close-btn:hover { color: #f43f5e; }
+        .modal-content h2 { margin-bottom: 25px; text-align: center; font-weight: 700; }
+        .modal-content form { display: flex; flex-direction: column; gap: 15px; }
+        .modal-content p { text-align: center; margin-top: 15px; font-size: 14px; color: #64748b; }
+        .modal-content span { color: var(--primary-color); cursor: pointer; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+    <!-- الهيدر -->
+    <header>
+        <a href="#" class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <span>EduHub</span>
+        </a>
+        <div class="user-actions">
+            <button id="authBtn" onclick="openAuthModal()"><i class="fa-solid fa-user-plus"></i> دخول / تسجيل</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- البانر الترحيبي والإحصائيات الحقيقية -->
+        <div class="hero-section">
+            <h2>مرحباً بك في مجتمع EduHub 🎓</h2>
+            <p>المكتبة الطلابية الحقيقية لمشاركة الملفات والمحاضرات.</p>
+            
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3 id="fileCount">0</h3>
+                    <p>المواد المرفوعة</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="studentCount">0</h3>
+                    <p>الطلاب المسجلين</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- أدوات التحكم والبحث -->
+        <div class="controls-row">
+            <div class="tabs">
+                <button class="tab-btn active" onclick="filterType('all', this)">الكل</button>
+                <button class="tab-btn" onclick="filterType('pdf', this)">ملفات ورقية (PDF)</button>
+                <button class="tab-btn" onclick="filterType('video', this)">فيديوهات وشروحات</button>
+            </div>
+            
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchBar" oninput="searchMaterials()" placeholder="ابحث في المكتبة...">
+            </div>
+        </div>
+
+        <!-- نظام الرفع -->
+        <div class="upload-section">
+            <h3><i class="fa-solid fa-square-plus"></i> إضافة محتوى تعليمي جديد</h3>
+            <form class="upload-form" id="uploadForm">
+                <div class="form-group">
+                    <label>عنوان المحتوى</label>
+                    <input type="text" id="title" placeholder="مثال: ملخص فيزياء شابتر 1" required>
+                </div>
+                <div class="form-group">
+                    <label>نوع الملف</label>
+                    <select id="type">
+                        <option value="pdf">ملف PDF / تلخيص مكتوب</option>
+                        <option value="video">رابط فيديو (YouTube / Drive)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>رابط الملف (من Google Drive أو يوتيوب)</label>
+                    <input type="url" id="link" placeholder="https://example.com/file" required>
+                </div>
+                <button type="submit" class="submit-btn"><i class="fa-solid fa-cloud-arrow-up"></i> انشر المواد للجميع</button>
+            </form>
+        </div>
+
+        <!-- شبكة المواد التعليمية -->
+        <h3><i class="fa-solid fa-book-open"></i> محتويات المكتبة الدراسية</h3>
+        <br>
+        <div class="grid" id="materialsGrid">
+            <!-- سيظهر هنا ما يرفعه الطلاب فعلياً فقط -->
+        </div>
+    </div>
+
+    <!-- نافذة التسجيل -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <i class="fa-solid fa-circle-xmark close-btn" onclick="closeAuthModal()"></i>
+            <h2 id="modalTitle">تسجيل الدخول للمنصة</h2>
+            <form id="authForm">
+                <input type="email" id="authEmail" placeholder="البريد الإلكتروني" required>
+                <input type="password" id="authPassword" placeholder="كلمة المرور" required>
+                <button type="submit" class="submit-btn" id="submitAuthBtn">تسجيل الدخول</button>
+            </form>
+            <p id="toggleText">عضو جديد بالمنصة؟ <span onclick="toggleAuthMode()">إنشاء حساب طالب</span></p>
+        </div>
+    </div>
+
+    <script>
+        // يبدأ الموقع بـ مصفوفة فارغة تماماً ليكون موثوقاً (لا توجد مواد مخفية)
+        let materials = JSON.parse(localStorage.getItem('realMaterials')) || [];
+        
+        // نظام جلب عدد الحسابات الحقيقية المسجلة فعلياً
+        let registeredUsers = JSON.parse(localStorage.getItem('registeredUsersList')) || [];
+
+        let currentFilter = 'all';
+        let isSignUp = false;
+        let currentUser = localStorage.getItem('realUserSession') || null;
+
+        function updateUI() {
+            const authBtn = document.getElementById('authBtn');
+            if (currentUser) {
+                authBtn.innerHTML = `<i class="fa-solid fa-door-open"></i> خروج (${currentUser.split('@')[0]})`;
+                authBtn.style.background = "#f43f5e";
+                authBtn.onclick = logout;
+            } else {
+                authBtn.innerHTML = `<i class="fa-solid fa-user-plus"></i> دخول / تسجيل`;
+                authBtn.style.background = "var(--primary-color)";
+                authBtn.onclick = openAuthModal;
+            }
+            
+            // تحديث العدادات بناءً على الواقع والبيانات الحقيقية 100%
+            document.getElementById('fileCount').innerText = materials.length;
+            document.getElementById('studentCount').innerText = registeredUsers.length;
+            
+            renderMaterials(materials);
+        }
+
+        function renderMaterials(dataToRender) {
+            const grid = document.getElementById('materialsGrid');
+            grid.innerHTML = '';
+
+            if(dataToRender.length === 0) {
+                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #64748b; padding: 40px;"><i class="fa-solid fa-folder-open"></i> المكتبة فارغة حالياً. كن أول من يسجل ويرفع ملفاً دراسياً لزملائك!</p>`;
+                return;
+            }
+
+            dataToRender.forEach(item => {
+                const isVideo = item.type === 'video';
+                const icon = isVideo ? 'fa-circle-play' : 'fa-file-lines';
+                const headerClass = isVideo ? 'card-header-img video-type' : 'card-header-img';
+                const badgeClass = isVideo ? 'card-badge video-badge' : 'card-badge';
+                const badgeText = isVideo ? 'شرح مرئي فيديو' : 'ملف دراسي PDF';
+
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="${headerClass}">
+                        <i class="fa-solid ${icon}"></i>
+                    </div>
+                    <div class="card-body">
+                        <span class="${badgeClass}">${badgeText}</span>
+                        <h4 class="card-title">${item.title}</h4>
+                        <a href="${item.link}" target="_blank" class="btn-action">
+                            ${isVideo ? 'مشاهدة الآن <i class="fa-solid fa-play"></i>' : 'تحميل الملف <i class="fa-solid fa-download"></i>'}
+                        </a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function searchMaterials() {
+            const query = document.getElementById('searchBar').value.toLowerCase();
+            const filtered = materials.filter(item => {
+                const matchesSearch = item.title.toLowerCase().includes(query);
+                const matchesTab = currentFilter === 'all' || item.type === currentFilter;
+                return matchesSearch && matchesTab;
+            });
+            renderMaterials(filtered);
+        }
+
+        function filterType(type, element) {
+            currentFilter = type;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            searchMaterials();
+        }
+
+        // رفع المواد الحقيقي
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if(!currentUser) {
+                alert('حماية للموقع: يجب عليك إنشاء حساب أو تسجيل الدخول لتتمكن من مشاركة الملفات.');
+                openAuthModal();
+                return;
+            }
+            
+            const title = document.getElementById('title').value;
+            const type = document.getElementById('type').value;
+            const link = document.getElementById('link').value;
+
+            materials.unshift({ id: Date.now(), title, type, link });
+            localStorage.setItem('realMaterials', JSON.stringify(materials));
+            updateUI();
+            this.reset();
+            alert('تم نشر المادة التعليمية في المكتبة بنجاح! 🎉');
+        });
+
+        function openAuthModal() { document.getElementById('authModal').style.display = 'flex'; }
+        function closeAuthModal() { document.getElementById('authModal').style.display = 'none'; }
+        
+        function toggleAuthMode() {
+            isSignUp = !isSignUp;
+            document.getElementById('modalTitle').innerText = isSignUp ? "إنشاء حساب طالب جديد" : "تسجيل الدخول للمنصة";
+            document.getElementById('submitAuthBtn').innerText = isSignUp ? "تأكيد والإنضمام للمنصة" : "تسجيل الدخول";
+            document.getElementById('toggleText').innerHTML = isSignUp ? "لديك حساب بالفعل؟ <span onclick='toggleAuthMode()'>اضغط هنا للدخول</span>" : "عضو جديد بالمنصة؟ <span onclick='toggleAuthMode()'>إنشاء حساب طالب</span>";
+        }
+
+        // نظام الحسابات الحقيقي الموثوق
+        document.getElementById('authForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('authEmail').value;
+            const password = document.getElementById('authPassword').value;
+
+            if (isSignUp) {
+                // التحقق من أن البريد غير مكرر
+                if (registeredUsers.some(user => user.email === email)) {
+                    alert('هذا البريد الإلكتروني مسجل بالفعل!');
+                    return;
+                }
+                // إضافة المستخدم الجديد لقائمة الطلاب المسجلين
+                registeredUsers.push({ email: email, password: password });
+                localStorage.setItem('registeredUsersList', JSON.stringify(registeredUsers));
+                
+                alert('تم تسجيل حسابك بنجاح كطالب في المنصة! يمكنك الآن تسجيل الدخول.');
+                toggleAuthMode();
+            } else {
+                // البحث في الحسابات الحقيقية المسجلة
+                const userFound = registeredUsers.find(user => user.email === email && user.password === password);
+                if (userFound) {
+                    currentUser = email;
+                    localStorage.setItem('realUserSession', email);
+                    closeAuthModal();
+                    updateUI();
+                } else {
+                    alert('عذراً، البريد الإلكتروني أو كلمة المرور غير صحيحة، أو الحساب غير موجود!');
+                }
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem('realUserSession');
+            currentUser = null;
+            updateUI();
+        }
+
+        // تشغيل المنصة الصادقة
+        updateUI();
+    </script>
+</body>
+</html>
